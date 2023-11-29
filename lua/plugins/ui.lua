@@ -141,8 +141,8 @@ return {
   {
     "akinsho/bufferline.nvim",
     keys = {
-      { "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
-      { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
+      { "<Tab>", ":BufferLineCycleNext<CR>", desc = "Next tab" },
+      { "<S-Tab>", ":BufferLineCyclePrev<CR>", desc = "Prev tab" },
     },
   },
 
@@ -201,6 +201,6 @@ return {
         kitty = { enabled = false, font = "+2" },
       },
     },
-    keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+    keys = { { "<leader>z", ":ZenMode<CR>", desc = "Zen Mode" } },
   },
 }

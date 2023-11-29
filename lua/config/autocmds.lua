@@ -7,3 +7,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   pattern = "*",
   command = "set nopaste",
 })
+
+-- Disable auto comment
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])

@@ -51,7 +51,7 @@ return {
           function()
             builtin.help_tags()
           end,
-          "Lists available help tags and opens a new window with the relevant help info on <cr>",
+          "Lists available help tags and opens a new window with the relevant help info on <CR>",
         },
         [";tr"] = {
           function()

@@ -7,8 +7,8 @@ return {
       local wk = require("which-key")
       wk.register({
         [";h"] = { name = "+hop" },
-        [";hp"] = { "<cmd>HopPattern<cr>", "HopPattern" },
-        [";hw"] = { "<cmd>HopWord<cr>", "HopWord" },
+        [";hp"] = { ":HopPattern<CR>", "HopPattern" },
+        [";hw"] = { ":HopWord<CR>", "HopWord" },
       })
 
       require("hop").setup()
