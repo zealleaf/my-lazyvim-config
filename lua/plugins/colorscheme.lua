@@ -1,4 +1,5 @@
 return {
+  -- solarized-osaka.nvim
   {
     "craftzdog/solarized-osaka.nvim",
     lazy = true,

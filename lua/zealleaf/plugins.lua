@@ -1,16 +1,35 @@
-local opts = {
-  noremap = true,
-  silent = true,
-}
-
 return {
+  -- hop.nvim
+  {
+    "phaazon/hop.nvim",
+    lazy = false,
+    config = function()
+      local wk = require("which-key")
+      wk.register({
+        [";h"] = { name = "+hop" },
+        [";hp"] = { "<cmd>HopPattern<cr>", "HopPattern" },
+        [";hw"] = { "<cmd>HopWord<cr>", "HopWord" },
+      })
+
+      require("hop").setup()
+    end,
+  },
+
+  -- vim-maximizer
   {
     "szw/vim-maximizer",
     event = "VeryLazy",
     init = function()
+      local opts = {
+        noremap = true,
+        silent = true,
+      }
+
       vim.keymap.set("n", ";m", ":MaximizerToggle<CR>", opts)
     end,
   },
+
+  -- nvim-ufo
   {
     "kevinhwang91/nvim-ufo",
     dependencies = {
@@ -107,18 +126,31 @@ return {
       })
     end,
   },
-  {
-    "phaazon/hop.nvim",
-    event = "VeryLazy",
-    config = function()
-      local wk = require("which-key")
-      wk.register({
-        [";h"] = { name = "+hop" },
-        [";hf"] = { "<cmd>HopPattern<cr>", "HopPattern" },
-        [";hw"] = { "<cmd>HopWord<cr>", "HopWord" },
-      })
 
-      require("hop").setup()
+  -- project.nvim
+  {
+    "ahmedkhalf/project.nvim",
+    event = "VimEnter",
+    config = function()
+      local telescope = require("telescope")
+      pcall(telescope.load_extension, "projects")
+      vim.g.nvim_tree_respect_buf_cwd = 1
+
+      require("project_nvim").setup({
+        detection_methods = { "pattern" },
+        patterns = {
+          "README.md",
+          "Cargo.toml",
+          "package.json",
+          ".sln",
+          ".git",
+          "_darcs",
+          ".hg",
+          ".bzr",
+          ".svn",
+          "Makefile",
+        },
+      })
     end,
   },
 }

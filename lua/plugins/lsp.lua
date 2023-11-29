@@ -1,5 +1,4 @@
 return {
-
   -- mason.nvim
   {
     "williamboman/mason.nvim",
@@ -21,8 +20,64 @@ return {
     end,
   },
 
+  -- nvim-lspconfig
   {
     "neovim/nvim-lspconfig",
-    init = function() end,
+    opts = {
+      servers = {
+        tsserver = {
+          keys = {
+            {
+              "<leader>cto",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.organizeImports.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Organize Imports",
+            },
+            {
+              "<leader>cta",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.addMissingImports.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Add Missing Imports",
+            },
+            {
+              "<leader>ctr",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.removeUnused.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Remove Unused",
+            },
+          },
+        },
+      },
+      setup = {
+        -- example to setup with typescript.nvim
+        -- tsserver = function(_, opts)
+        --   require("typescript").setup({ server = opts })
+        --   return true
+        -- end,
+        -- Specify * to use this function as a fallback for any server
+        -- ["*"] = function(server, opts) end,
+      },
+    },
   },
 }

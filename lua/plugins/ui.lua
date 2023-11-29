@@ -1,9 +1,7 @@
 return {
-
   -- dashboard-nvim
   {
     "nvimdev/dashboard-nvim",
-    event = "VimEnter",
     opts = function(_, opts)
       local logo = [[
 			                                     ,--,    ,--,                                       
@@ -28,9 +26,9 @@ return {
       opts.config.center = {
         {
           action = "Telescope projects",
-          desc = " Open projects                             ",
+          desc = " Projects                             ",
           icon = " ",
-          key = "f",
+          key = "p",
         },
         {
           action = "Telescope oldfiles",
@@ -46,9 +44,9 @@ return {
         },
         {
           action = "ene | startinsert",
-          desc = " Run current",
+          desc = " Current path",
           icon = " ",
-          key = "c",
+          key = "/",
         },
         {
           action = [[lua require("lazyvim.util").telescope.config_files()()]],
@@ -97,7 +95,6 @@ return {
   -- mini.indentscope
   {
     "echasnovski/mini.indentscope",
-    event = "BufReadPre",
     opts = {
       draw = {
         -- Delay (in ms) between event and start of drawing scope indicator
@@ -130,7 +127,6 @@ return {
   -- mini.animate
   {
     "echasnovski/mini.animate",
-    event = "VeryLazy",
     opts = {
       cursor = {
         enable = false,
@@ -144,7 +140,6 @@ return {
   -- bufferline.nvim
   {
     "akinsho/bufferline.nvim",
-    event = "VeryLazy",
     keys = {
       { "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
       { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
@@ -154,7 +149,6 @@ return {
   -- lualine.nvim
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
     opts = {
       options = {
         -- globalstatus = false,
