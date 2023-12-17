@@ -36,10 +36,69 @@ return {
           "Git explorer",
         },
       })
+
+      require("neo-tree").setup({
+        commands = {
+          copy_selector = function(state)
+            local node = state.tree:get_node()
+            local filepath = node:get_id()
+            local filename = node.name
+            local modify = vim.fn.fnamemodify
+
+            local vals = {
+              ["BASENAME"] = modify(filename, ":r"),
+              ["EXTENSION"] = modify(filename, ":e"),
+              ["FILENAME"] = filename,
+              ["PATH (CWD)"] = modify(filepath, ":."),
+              ["PATH (HOME)"] = modify(filepath, ":~"),
+              ["PATH"] = filepath,
+              ["URI"] = vim.uri_from_fname(filepath),
+            }
+
+            local options = vim.tbl_filter(function(val)
+              return vals[val] ~= ""
+            end, vim.tbl_keys(vals))
+            if vim.tbl_isempty(options) then
+              vim.notify("No values to copy", vim.log.levels.WARN)
+              return
+            end
+            table.sort(options)
+            vim.ui.select(options, {
+              prompt = "Choose to copy to clipboard:",
+              format_item = function(item)
+                return ("%s: %s"):format(item, vals[item])
+              end,
+            }, function(choice)
+              local result = vals[choice]
+              if result then
+                vim.notify(("Copied: `%s`"):format(result))
+                vim.fn.setreg("+", result)
+              end
+            end)
+          end,
+        },
+        window = {
+          mappings = {
+            Y = "copy_selector",
+          },
+        },
+        filesystem = {
+          follow_current_file = {
+            enabled = true,
+          },
+        },
+      })
     end,
   },
   {
     "telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+      "nvim-telescope/telescope-file-browser.nvim",
+    },
     config = function(_, opts)
       local telescope = require("telescope")
       local builtin = require("telescope.builtin")
@@ -59,9 +118,30 @@ return {
           end,
           "Resume the previous telescope picker",
         },
+        [";te"] = {
+          function()
+            local function telescope_buffer_dir()
+              return vim.fn.expand("%:p:h")
+            end
+
+            telescope.extensions.file_browser.file_browser({
+              path = "%:p:h",
+              cwd = telescope_buffer_dir(),
+              respect_gitignore = false,
+              hidden = true,
+              grouped = true,
+              previewer = true,
+              initial_mode = "normal",
+            })
+          end,
+          "Open File Browser with the path of the current buffer",
+        },
       })
 
       telescope.setup(opts)
+
+      require("telescope").load_extension("fzf")
+      require("telescope").load_extension("file_browser")
     end,
   },
 }

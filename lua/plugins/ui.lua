@@ -40,13 +40,13 @@ return {
           action = "Telescope live_grep",
           desc = " Find text",
           icon = " ",
-          key = "g",
+          key = "/",
         },
         {
           action = "ene | startinsert",
           desc = " Current path",
           icon = " ",
-          key = "/",
+          key = "i",
         },
         {
           action = [[lua require("lazyvim.util").telescope.config_files()()]],
@@ -79,6 +79,60 @@ return {
           key = "q",
         },
       }
+    end,
+  },
+
+  -- messages, cmdline and the popupmenu
+  {
+    "folke/noice.nvim",
+    opts = function(_, opts)
+      table.insert(opts.routes, {
+        filter = {
+          event = "notify",
+          find = "No information available",
+        },
+        opts = { skip = true },
+      })
+      local focused = true
+      vim.api.nvim_create_autocmd("FocusGained", {
+        callback = function()
+          focused = true
+        end,
+      })
+      vim.api.nvim_create_autocmd("FocusLost", {
+        callback = function()
+          focused = false
+        end,
+      })
+      table.insert(opts.routes, 1, {
+        filter = {
+          cond = function()
+            return not focused
+          end,
+        },
+        view = "notify_send",
+        opts = { stop = false },
+      })
+
+      opts.commands = {
+        all = {
+          -- options for the message history that you get with `:Noice`
+          view = "split",
+          opts = { enter = true, format = "details" },
+          filter = {},
+        },
+      }
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function(event)
+          vim.schedule(function()
+            require("noice.text.markdown").keys(event.buf)
+          end)
+        end,
+      })
+
+      opts.presets.lsp_doc_border = true
     end,
   },
 
@@ -125,24 +179,24 @@ return {
   },
 
   -- mini.animate
-  {
-    "echasnovski/mini.animate",
-    opts = {
-      cursor = {
-        enable = false,
-      },
-      scroll = {
-        enable = false,
-      },
-    },
-  },
+  -- {
+  --   "echasnovski/mini.animate",
+  --   opts = {
+  --     cursor = {
+  --       enable = false,
+  --     },
+  --     scroll = {
+  --       enable = false,
+  --     },
+  --   },
+  -- },
 
   -- bufferline.nvim
   {
     "akinsho/bufferline.nvim",
     keys = {
-      { "<Tab>", ":BufferLineCycleNext<CR>", desc = "Next tab" },
-      { "<S-Tab>", ":BufferLineCyclePrev<CR>", desc = "Prev tab" },
+      { "<Tab>", ":BufferLineCycleNext<CR>", desc = "Next tab", silent = true },
+      { "<S-Tab>", ":BufferLineCyclePrev<CR>", desc = "Prev tab", silent = true },
     },
   },
 
@@ -160,19 +214,19 @@ return {
   -- incline.nvim
   {
     "b0o/incline.nvim",
-    dependencies = { "craftzdog/solarized-osaka.nvim" },
+    -- dependencies = { "craftzdog/solarized-osaka.nvim" },
     event = "BufReadPre",
     priority = 1200,
     config = function()
-      local colors = require("solarized-osaka.colors").setup()
+      -- local colors = require("solarized-osaka.colors").setup()
       require("incline").setup({
-        highlight = {
-          groups = {
-            InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
-            InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
-          },
-        },
-        window = { margin = { vertical = 0, horizontal = 1 } },
+        -- highlight = {
+        --   groups = {
+        --     InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
+        --     InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
+        --   },
+        -- },
+        window = { margin = { vertical = 0, horizontal = 1 }, zindex = 99 },
         hide = {
           cursorline = true,
         },
@@ -195,12 +249,13 @@ return {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     opts = {
+      zindex = 1000,
       plugins = {
         gitsigns = true,
         tmux = true,
         kitty = { enabled = false, font = "+2" },
       },
     },
-    keys = { { "<leader>z", ":ZenMode<CR>", desc = "Zen Mode" } },
+    keys = { { "<leader>z", ":ZenMode<CR>", desc = "Zen Mode", silent = true } },
   },
 }

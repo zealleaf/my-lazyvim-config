@@ -26,8 +26,15 @@ return {
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       init = function()
-        require("lazyvim.util").lsp.on_attach(function(_, buffer)
-          vim.keymap.set("n", "<leader>ctf", ":TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
+        require("lazyvim.util").lsp.on_attach(function(client, buffer)
+          if client.name == "tsserver" then
+            vim.keymap.set(
+              "n",
+              "<leader>ctf",
+              ":TypescriptRenameFile<CR>",
+              { desc = "Rename File", buffer = buffer, silent = true }
+            )
+          end
         end)
       end,
     },
