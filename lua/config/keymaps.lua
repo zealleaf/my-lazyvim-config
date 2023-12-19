@@ -33,8 +33,8 @@ vim.keymap.set("n", "<C-n>", ":nohlsearch<CR>", opts)
 vim.keymap.set("n", "x", '"_x')
 
 -- window management
-vim.keymap.set("n", "sh", ":vsp<CR>", opts)
-vim.keymap.set("n", "sv", ":sp<CR>", opts)
+vim.keymap.set("n", "sv", ":vsp<CR>", opts)
+vim.keymap.set("n", "sh", ":sp<CR>", opts)
 vim.keymap.set("n", "sx", "<C-w>c")
 vim.keymap.set("n", "so", "<C-w>o") -- close others
 vim.keymap.set("n", "s;", ":vertical resize -10<CR>", opts)

@@ -80,6 +80,8 @@ return {
         window = {
           mappings = {
             Y = "copy_selector",
+            h = "navigate_up",
+            l = "open",
           },
         },
         filesystem = {
