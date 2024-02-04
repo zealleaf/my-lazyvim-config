@@ -88,51 +88,19 @@ return {
     opts = function(_, opts)
       table.insert(opts.routes, {
         filter = {
-          event = "notify",
-          find = "No information available",
+          any = {
+            {
+              event = "notify",
+              find = "No information available",
+            },
+            {
+              event = "notify",
+              find = "Invalid mappding for",
+            },
+          },
         },
         opts = { skip = true },
       })
-      local focused = true
-      vim.api.nvim_create_autocmd("FocusGained", {
-        callback = function()
-          focused = true
-        end,
-      })
-      vim.api.nvim_create_autocmd("FocusLost", {
-        callback = function()
-          focused = false
-        end,
-      })
-      table.insert(opts.routes, 1, {
-        filter = {
-          cond = function()
-            return not focused
-          end,
-        },
-        view = "notify_send",
-        opts = { stop = false },
-      })
-
-      opts.commands = {
-        all = {
-          -- options for the message history that you get with `:Noice`
-          view = "split",
-          opts = { enter = true, format = "details" },
-          filter = {},
-        },
-      }
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "markdown",
-        callback = function(event)
-          vim.schedule(function()
-            require("noice.text.markdown").keys(event.buf)
-          end)
-        end,
-      })
-
-      opts.presets.lsp_doc_border = true
     end,
   },
 
@@ -141,8 +109,9 @@ return {
     "rcarriga/nvim-notify",
     opts = {
       fps = 60,
-      timeout = 5000,
+      timeout = 2000,
       top_down = false,
+      render = "minimal",
     },
   },
 
@@ -218,15 +187,15 @@ return {
     event = "BufReadPre",
     priority = 1200,
     config = function()
-      -- local colors = require("solarized-osaka.colors").setup()
+      local colors = require("solarized-osaka.colors").setup()
       require("incline").setup({
-        -- highlight = {
-        --   groups = {
-        --     InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
-        --     InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
-        --   },
-        -- },
-        window = { margin = { vertical = 0, horizontal = 1 }, zindex = 99 },
+        highlight = {
+          groups = {
+            InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
+            InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
+          },
+        },
+        window = { margin = { vertical = 0, horizontal = 1 }, zindex = 15 },
         hide = {
           cursorline = true,
         },
@@ -249,7 +218,7 @@ return {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     opts = {
-      zindex = 1000,
+      zindex = 35,
       plugins = {
         gitsigns = true,
         tmux = true,
@@ -257,5 +226,15 @@ return {
       },
     },
     keys = { { "<leader>z", ":ZenMode<CR>", desc = "Zen Mode", silent = true } },
+  },
+
+  -- which-key.nvim
+  {
+    "folke/which-key.nvim",
+    opts = {
+      window = {
+        border = "rounded", -- none, single, double, shadow
+      },
+    },
   },
 }

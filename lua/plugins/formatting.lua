@@ -4,6 +4,7 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
+        svg = { "lemminx" },
         bash = { "shfmt" },
         lua = { "stylua" },
         html = { "prettierd" },

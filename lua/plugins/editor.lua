@@ -2,6 +2,7 @@ return {
   -- neo-tree.nvim
   {
     "nvim-neo-tree/neo-tree.nvim",
+    tag = "3.14",
     keys = {
       {
         "<leader>e",
@@ -76,31 +77,37 @@ return {
               end
             end)
           end,
+          open_with_vscode = function(state)
+            local node = state.tree:get_node()
+            local filepath = node:get_id()
+            local modify = vim.fn.fnamemodify
+            local PATH_HOME = modify(filepath, ":~")
+
+            vim.fn.system("open -a 'Visual Studio Code' " .. PATH_HOME)
+          end,
         },
         window = {
           mappings = {
-            Y = "copy_selector",
-            h = "navigate_up",
             l = "open",
+            ["<space>"] = "",
+            h = "navigate_up",
+            -- b = "navigate_up",
+            v = "open_with_vscode",
+            Y = "copy_selector",
+            L = "focus_preview",
           },
         },
         filesystem = {
           follow_current_file = {
             enabled = true,
           },
+          use_libuv_file_watcher = true,
         },
       })
     end,
   },
   {
     "telescope.nvim",
-    dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-      },
-      "nvim-telescope/telescope-file-browser.nvim",
-    },
     config = function(_, opts)
       local telescope = require("telescope")
       local builtin = require("telescope.builtin")
@@ -120,30 +127,28 @@ return {
           end,
           "Resume the previous telescope picker",
         },
-        [";te"] = {
-          function()
-            local function telescope_buffer_dir()
-              return vim.fn.expand("%:p:h")
-            end
+      })
 
-            telescope.extensions.file_browser.file_browser({
-              path = "%:p:h",
-              cwd = telescope_buffer_dir(),
-              respect_gitignore = false,
-              hidden = true,
-              grouped = true,
-              previewer = true,
-              initial_mode = "normal",
-            })
-          end,
-          "Open File Browser with the path of the current buffer",
-        },
+      opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
+        layout_strategy = "horizontal",
+        layout_config = { prompt_position = "top" },
+        sorting_strategy = "ascending",
       })
 
       telescope.setup(opts)
-
-      require("telescope").load_extension("fzf")
-      require("telescope").load_extension("file_browser")
     end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = "│" },
+        change = { text = "│" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked = { text = "┆" },
+      },
+    },
   },
 }

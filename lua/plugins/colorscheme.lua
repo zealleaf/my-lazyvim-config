@@ -1,21 +1,23 @@
 return {
-  -- solarized-osaka.nvim
-  -- {
-  --   "craftzdog/solarized-osaka.nvim",
-  --   lazy = true,
-  --   priority = 1000,
-  --   opts = function()
-  --     return {
-  --       transparent = true,
-  --     }
-  --   end,
-  -- },
-
-  -- shaunsingh/nord.nvim
-  -- {
-  --   "shaunsingh/nord.nvim",
-  --   name = "nord",
-  --   lazy = false,
-  --   priority = 1000,
-  -- },
+  {
+    "olimorris/onedarkpro.nvim",
+    opts = {
+      colors = {
+        dark = { bg = "#16191e" },
+      },
+      options = {
+        cursorline = true,
+      },
+      highlights = {
+        WhichKeyFloat = { bg = "#16191e" },
+        WhichKeyBorder = { bg = "#16191e" },
+        PmenuSel = { bg = "#2e313a" },
+      },
+    },
+  },
+  { "craftzdog/solarized-osaka.nvim" },
+  { "shaunsingh/nord.nvim", name = "nord" },
+  { "catppuccin/nvim", name = "catppuccin" },
+  { "olivercederborg//poimandres.nvim" },
+  { "projekt0n/github-nvim-theme" },
 }
