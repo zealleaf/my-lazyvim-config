@@ -7,17 +7,16 @@ return {
       },
       options = {
         cursorline = true,
+        transparency = true,
       },
       highlights = {
         WhichKeyFloat = { bg = "#16191e" },
         WhichKeyBorder = { bg = "#16191e" },
+        NotifyBackground = { bg = "#000000" },
         PmenuSel = { bg = "#2e313a" },
       },
     },
   },
   { "craftzdog/solarized-osaka.nvim" },
-  { "shaunsingh/nord.nvim", name = "nord" },
-  { "catppuccin/nvim", name = "catppuccin" },
-  { "olivercederborg//poimandres.nvim" },
   { "projekt0n/github-nvim-theme" },
 }

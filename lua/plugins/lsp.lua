@@ -31,7 +31,7 @@ return {
           if client.name == "tsserver" then
             vim.keymap.set(
               "n",
-              "<leader>ctf",
+              "<leader>ctr",
               ":TypescriptRenameFile<CR>",
               { desc = "Rename File", buffer = buffer, silent = true }
             )
@@ -70,7 +70,7 @@ return {
               desc = "Add Missing Imports",
             },
             {
-              "<leader>ctr",
+              "<leader>ctu",
               function()
                 vim.lsp.buf.code_action({
                   apply = true,

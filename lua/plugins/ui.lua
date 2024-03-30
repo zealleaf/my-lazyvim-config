@@ -95,7 +95,7 @@ return {
             },
             {
               event = "notify",
-              find = "Invalid mappding for",
+              find = "Invalid mapping for",
             },
           },
         },
@@ -195,7 +195,7 @@ return {
             InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
           },
         },
-        window = { margin = { vertical = 0, horizontal = 1 }, zindex = 15 },
+        window = { margin = { vertical = 0, horizontal = 1 }, zindex = 25 },
         hide = {
           cursorline = true,
         },

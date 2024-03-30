@@ -85,6 +85,14 @@ return {
 
             vim.fn.system("open -a 'Visual Studio Code' " .. PATH_HOME)
           end,
+          open_with_system = function(state)
+            local node = state.tree:get_node()
+            local filepath = node:get_id()
+            local modify = vim.fn.fnamemodify
+            local PATH_HOME = modify(filepath, ":~")
+
+            vim.fn.system("open " .. PATH_HOME)
+          end,
         },
         window = {
           mappings = {
@@ -92,8 +100,9 @@ return {
             ["<space>"] = "",
             h = "navigate_up",
             -- b = "navigate_up",
-            v = "open_with_vscode",
-            Y = "copy_selector",
+            [";v"] = "open_with_vscode",
+            [";s"] = "open_with_system",
+            [";y"] = "copy_selector",
             L = "focus_preview",
           },
         },
@@ -149,6 +158,7 @@ return {
         changedelete = { text = "~" },
         untracked = { text = "┆" },
       },
+      attach_to_untracked = true,
     },
   },
 }

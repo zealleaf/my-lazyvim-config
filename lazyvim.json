@@ -3,11 +3,12 @@
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.typescript",
-    "lazyvim.plugins.extras.linting.eslint"
+    "lazyvim.plugins.extras.linting.eslint",
+    "lazyvim.plugins.extras.util.project"
   ],
   "news": {
-    "NEWS.md": "2123",
+    "NEWS.md": "3314",
     "doc/news.txt": "13995"
   },
-  "version": 2
+  "version": 3
 }
