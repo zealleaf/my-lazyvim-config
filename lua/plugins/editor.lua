@@ -101,7 +101,7 @@ return {
             h = "navigate_up",
             -- b = "navigate_up",
             [";v"] = "open_with_vscode",
-            [";s"] = "open_with_system",
+            [";o"] = "open_with_system",
             [";y"] = "copy_selector",
             L = "focus_preview",
           },
@@ -159,6 +159,11 @@ return {
         untracked = { text = "┆" },
       },
       attach_to_untracked = true,
+      current_line_blame = true,
+      current_line_blame_opts = {
+        delay = 350,
+      },
     },
   },
+  { "folke/flash.nvim", enabled = false },
 }
