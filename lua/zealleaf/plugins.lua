@@ -16,18 +16,18 @@ return {
   },
 
   -- vim-maximizer
-  -- {
-  --   "szw/vim-maximizer",
-  --   event = "VeryLazy",
-  --   init = function()
-  --     local opts = {
-  --       noremap = true,
-  --       silent = true,
-  --     }
-  --
-  --     vim.keymap.set("n", ";m", ":MaximizerToggle<CR>", opts)
-  --   end,
-  -- },
+  {
+    "szw/vim-maximizer",
+    event = "VeryLazy",
+    init = function()
+      local opts = {
+        noremap = true,
+        silent = true,
+      }
+
+      vim.keymap.set("n", ";m", ":MaximizerToggle!<CR>", opts)
+    end,
+  },
 
   -- nvim-ufo
   {

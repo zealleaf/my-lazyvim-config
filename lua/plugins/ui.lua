@@ -43,10 +43,10 @@ return {
           key = "/",
         },
         {
-          action = "ene | startinsert",
-          desc = " Current path",
+          action = "DefaultOpen",
+          desc = " Default open",
           icon = " ",
-          key = "i",
+          key = "d",
         },
         {
           action = [[lua require("lazyvim.util").telescope.config_files()()]],
