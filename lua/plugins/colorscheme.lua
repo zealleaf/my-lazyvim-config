@@ -25,6 +25,12 @@ return {
         options = {
           transparent = true,
         },
+        groups = {
+          all = {
+            WhichKeyFloat = { bg = "#16191e" },
+            WhichKeyBorder = { bg = "#16191e" },
+          },
+        },
       })
     end,
   },
