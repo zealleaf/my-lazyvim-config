@@ -18,5 +18,14 @@ return {
     },
   },
   { "craftzdog/solarized-osaka.nvim" },
-  { "projekt0n/github-nvim-theme" },
+  {
+    "projekt0n/github-nvim-theme",
+    config = function()
+      require("github-theme").setup({
+        options = {
+          transparent = true,
+        },
+      })
+    end,
+  },
 }
