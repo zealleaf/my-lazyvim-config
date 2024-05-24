@@ -1,20 +1,4 @@
 return {
-  -- hop.nvim
-  {
-    "phaazon/hop.nvim",
-    lazy = false,
-    config = function()
-      local wk = require("which-key")
-      wk.register({
-        [";h"] = { name = "+hop" },
-        [";hp"] = { ":HopPattern<CR>", "HopPattern" },
-        [";hw"] = { ":HopWord<CR>", "HopWord" },
-      })
-
-      require("hop").setup()
-    end,
-  },
-
   -- vim-maximizer
   {
     "szw/vim-maximizer",

@@ -10,8 +10,9 @@ local opts = {
 ---------------------
 -- General
 ---------------------
-vim.keymap.set("n", "s", ":w!<CR>", opts)
-vim.keymap.set("n", "ss", ":wa!<CR>", opts)
+vim.keymap.set("n", "S", ":wa<CR>", opts)
+vim.keymap.set("n", "sfw", ":w!<CR>", opts)
+vim.keymap.set("n", "sfa", ":wa!<CR>", opts)
 vim.keymap.set("n", "<C-q>", ":qa!<CR>", opts)
 vim.keymap.set("n", "q", "<C-w>c")
 vim.keymap.set("n", "H", "^")
