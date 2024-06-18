@@ -5,19 +5,10 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
-        "lemminx",
+        "html-lsp",
         "css-lsp",
-        "eslint-lsp",
         "eslint_d",
-        "json-lsp",
-        "lua-language-server",
-        "markdownlint",
-        "marksman",
         "prettierd",
-        "shfmt",
-        "stylua",
-        "typescript-language-server",
-        -- "tailwindcss-language-server",
       })
     end,
   },
@@ -25,79 +16,10 @@ return {
   -- nvim-lspconfig
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "jose-elias-alvarez/typescript.nvim",
-      init = function()
-        require("lazyvim.util").lsp.on_attach(function(client, buffer)
-          if client.name == "tsserver" then
-            vim.keymap.set(
-              "n",
-              "<leader>ctr",
-              ":TypescriptRenameFile<CR>",
-              { desc = "Rename File", buffer = buffer, silent = true }
-            )
-          end
-        end)
-      end,
-    },
     opts = {
-      servers = {
-        tsserver = {
-          keys = {
-            {
-              "<leader>cto",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.organizeImports.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Organize Imports",
-            },
-            {
-              "<leader>cta",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.addMissingImports.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Add Missing Imports",
-            },
-            {
-              "<leader>ctu",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.removeUnused.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Remove Unused",
-            },
-          },
-        },
-      },
-      setup = {
-        -- example to setup with typescript.nvim
-        tsserver = function(_, opts)
-          require("typescript").setup({ server = opts })
-          return true
-        end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
-      },
       inlay_hints = {
         enabled = false,
-      }
+      },
     },
   },
 }

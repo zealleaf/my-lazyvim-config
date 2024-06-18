@@ -8,14 +8,14 @@ return {
         "<leader>e",
         function()
           local Util = require("lazyvim.util")
-          require("neo-tree.command").execute({ toggle = true, position = "right", dir = Util.root() })
+          require("neo-tree.command").execute({ toggle = true, dir = Util.root() })
         end,
         desc = "Explorer NeoTree (root dir)",
       },
       {
         "<leader>E",
         function()
-          require("neo-tree.command").execute({ toggle = true, position = "right", dir = vim.loop.cwd() })
+          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
         end,
         desc = "Explorer NeoTree (cwd)",
       },
@@ -26,13 +26,13 @@ return {
         [";e"] = { name = "+neo-tree" },
         [";eb"] = {
           function()
-            require("neo-tree.command").execute({ source = "buffers", position = "right", toggle = true })
+            require("neo-tree.command").execute({ source = "buffers", toggle = true })
           end,
           "Buffer explorer",
         },
         [";eg"] = {
           function()
-            require("neo-tree.command").execute({ source = "git_status", position = "right", toggle = true })
+            require("neo-tree.command").execute({ source = "git_status", toggle = true })
           end,
           "Git explorer",
         },
@@ -95,6 +95,7 @@ return {
           end,
         },
         window = {
+          position = "right",
           mappings = {
             l = "open",
             ["<space>"] = "",

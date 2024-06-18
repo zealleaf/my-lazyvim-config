@@ -6,12 +6,13 @@
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.linting.eslint",
+    "lazyvim.plugins.extras.ui.alpha",
     "lazyvim.plugins.extras.ui.mini-indentscope",
     "lazyvim.plugins.extras.util.project"
   ],
   "news": {
-    "NEWS.md": "4964",
+    "NEWS.md": "6077",
     "doc/news.txt": "24447"
   },
-  "version": 4
+  "version": 6
 }

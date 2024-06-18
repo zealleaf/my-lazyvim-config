@@ -1,84 +1,39 @@
+---@diagnostic disable: param-type-mismatch
 return {
-  -- dashboard-nvim
+  -- alpha-nvim
   {
-    "nvimdev/dashboard-nvim",
-    opts = function(_, opts)
-      local logo = [[
-			                                     ,--,    ,--,                                       
-			                                   ,--.'|  ,--.'|                           .--.,       
-			       ,----,                      |  | :  |  | :                         ,--.'  \      
-			     .'   .`|                      :  : '  :  : '                         |  | /\/      
-			  .'   .'  .'   ,---.     ,--.--.  |  ' |  |  ' |      ,---.     ,--.--.  :  : :        
-			,---, '   ./   /     \   /       \ '  | |  '  | |     /     \   /       \ :  | |-       
-			;   | .'  /   /    /  | .--.  .-. ||  | :  |  | :    /    /  | .--.  .-. ||  : :/|      
-			`---' /  ;--,.    ' / |  \__\/: . .'  : |__'  : |__ .    ' / |  \__\/: . .|  |  .'      
-			  /  /  / .`|'   ;   /|  ," .--.; ||  | '.'|  | '.'|'   ;   /|  ," .--.; |'  : '        
-			./__;     .' '   |  / | /  /  ,.  |;  :    ;  :    ;'   |  / | /  /  ,.  ||  | |        
-			;   |  .'    |   :    |;  :   .'   \  ,   /|  ,   / |   :    |;  :   .'   \  : \        
-			`---'         \   \  / |  ,     .-./---`-'  ---`-'   \   \  / |  ,     .-./  |,'        
-			               `----'   `--`---'                      `----'   `--`---'   `--'          
-    ]]
-
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-
-      opts.config.header = vim.split(logo, "\n")
-
-      opts.config.center = {
-        {
-          action = "Telescope projects",
-          desc = " Projects                             ",
-          icon = " ",
-          key = "p",
-        },
-        {
-          action = "Telescope oldfiles",
-          desc = " Recent files",
-          icon = " ",
-          key = "r",
-        },
-        {
-          action = "Telescope live_grep",
-          desc = " Find text",
-          icon = " ",
-          key = "/",
-        },
-        {
-          action = "DefaultOpen",
-          desc = " Default open",
-          icon = " ",
-          key = "d",
-        },
-        {
-          action = [[lua require("lazyvim.util").telescope.config_files()()]],
-          desc = " Config",
-          icon = " ",
-          key = "c",
-        },
-        {
-          action = 'lua require("persistence").load()',
-          desc = " Restore Session",
-          icon = " ",
-          key = "s",
-        },
-        {
-          action = "LazyExtras",
-          desc = " Lazy Extras",
-          icon = " ",
-          key = "x",
-        },
-        {
-          action = "Lazy",
-          desc = " Lazy",
-          icon = "󰒲 ",
-          key = "l",
-        },
-        {
-          action = "qa",
-          desc = " Quit",
-          icon = " ",
-          key = "q",
+    "goolord/alpha-nvim",
+    config = function()
+      local config = require("alpha.themes.startify").config
+      local button = require("alpha.themes.startify").button
+      config.layout[2].val = {
+        [[               _ _             __      ]],
+        [[ _______  __ _| | | ___  __ _ / _|     ]],
+        [[|_  / _ \/ _` | | |/ _ \/ _` | |_       ]],
+        [[ / /  __/ (_| | | |  __/ (_| |  _|     ]],
+        [[/___\___|\__,_|_|_|\___|\__,_|_|        ]],
+      }
+      config.layout[4] = {
+        type = "group",
+        val = {
+          button("s", "Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
+          button("d", "Default Open", "<cmd> DefaultOpen <cr>"),
+          { type = "padding", val = 1 },
+          button("n", "New file", "<cmd> ene <BAR> startinsert <cr>"),
+          button("p", "Project", "<cmd> Telescope projects <cr>"),
         },
       }
+      config.layout[8] = {
+        type = "group",
+        val = {
+          button("c", "Config", LazyVim.pick.config_files()),
+          button("x", "Lazy Extras", "<cmd> LazyExtra <cr>"),
+          button("l", "Lazy", "<cmd> Lazy <cr>"),
+          { type = "padding", val = 1 },
+          button("q", "Quit", "<cmd> qa <cr>"),
+        },
+      }
+      require("alpha").setup(config)
     end,
   },
 
@@ -174,8 +129,10 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = {
       options = {
-        -- globalstatus = false,
-        theme = "solarized_dark",
+        theme = "auto",
+      },
+      sections = {
+        lualine_z = {},
       },
     },
   },
@@ -183,7 +140,6 @@ return {
   -- incline.nvim
   {
     "b0o/incline.nvim",
-    -- dependencies = { "craftzdog/solarized-osaka.nvim" },
     event = "BufReadPre",
     priority = 1200,
     config = function()
@@ -200,15 +156,6 @@ return {
           cursorline = true,
         },
         render = "basic",
-        -- render = function(props)
-        --   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-        --   if vim.bo[props.buf].modified then
-        --     filename = "[+] " .. filename
-        --   end
-        --
-        --   local icon, color = require("nvim-web-devicons").get_icon_color(filename)
-        --   return { { icon, guifg = color }, { " " }, { filename } }
-        -- end,
       })
     end,
   },
