@@ -184,4 +184,29 @@ return {
       },
     },
   },
+  {
+    "nvim-pack/nvim-spectre",
+    keys = {
+      { "<leader>sr", false },
+      {
+        "<leader>srl",
+        mode = { "n" },
+        '<cmd>lua require("spectre").open_file_search()<CR>',
+        desc = "Search local",
+      },
+      {
+        "<leader>srw",
+        mode = { "n", "v" },
+        '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+        desc = "Search word local",
+      },
+      { "<leader>srg", mode = { "n" }, '<cmd>lua require("spectre").toggle()<CR>', desc = "Search global" },
+      {
+        "<leader>srW",
+        mode = { "n", "v" },
+        '<esc><cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+        desc = "Search word global",
+      },
+    },
+  },
 }
