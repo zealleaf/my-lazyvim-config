@@ -2,7 +2,7 @@ return {
   -- neo-tree.nvim
   {
     "nvim-neo-tree/neo-tree.nvim",
-    tag = "3.14",
+    -- tag = "3.14",
     keys = {
       {
         "<leader>e",
