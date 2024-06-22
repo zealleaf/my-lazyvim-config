@@ -27,6 +27,11 @@ vim.keymap.set("v", "<C-u>", "5k")
 vim.keymap.set("v", "H", "^")
 vim.keymap.set("v", "L", "$")
 
+-- zh <--> en
+vim.keymap.set("i", "jj", "<C-[>")
+vim.keymap.set("n", "I", "i")
+vim.keymap.set("n", "A", "a")
+
 -- clear search highlights
 vim.keymap.set("n", "<C-n>", ":nohlsearch<CR>", opts)
 
