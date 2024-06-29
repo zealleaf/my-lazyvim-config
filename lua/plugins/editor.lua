@@ -117,38 +117,6 @@ return {
     end,
   },
   {
-    "telescope.nvim",
-    config = function(_, opts)
-      local telescope = require("telescope")
-      local builtin = require("telescope.builtin")
-
-      local wk = require("which-key")
-      wk.register({
-        [";t"] = { name = "+telescope" },
-        [";th"] = {
-          function()
-            builtin.help_tags()
-          end,
-          "Lists available help tags and opens a new window with the relevant help info on <CR>",
-        },
-        [";tr"] = {
-          function()
-            builtin.resume()
-          end,
-          "Resume the previous telescope picker",
-        },
-      })
-
-      opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
-        layout_strategy = "horizontal",
-        layout_config = { prompt_position = "top" },
-        sorting_strategy = "ascending",
-      })
-
-      telescope.setup(opts)
-    end,
-  },
-  {
     "lewis6991/gitsigns.nvim",
     opts = {
       signs = {

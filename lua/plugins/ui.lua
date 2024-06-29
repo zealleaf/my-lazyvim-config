@@ -18,9 +18,7 @@ return {
         val = {
           button("s", "Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
           button("d", "Default Open", "<cmd> DefaultOpen <cr>"),
-          { type = "padding", val = 1 },
           button("n", "New file", "<cmd> ene <BAR> startinsert <cr>"),
-          button("p", "Project", "<cmd> Telescope projects <cr>"),
         },
       }
       config.layout[8] = {
@@ -151,7 +149,7 @@ return {
             InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
           },
         },
-        window = { margin = { vertical = 0, horizontal = 1 }, zindex = 25 },
+        window = { margin = { vertical = 0, horizontal = 0 }, zindex = 25 },
         hide = {
           cursorline = true,
         },
