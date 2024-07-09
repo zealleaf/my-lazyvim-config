@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 -- Disable auto comment
--- vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+vim.api.nvim_command('autocmd FileType * set formatoptions-=ro')
 
 -- Disable the concealing in some file formats
 -- The default conceallevel is 3 in LazyVim

@@ -16,18 +16,15 @@ return {
       config.layout[4] = {
         type = "group",
         val = {
-          button("s", "Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
-          button("n", "New file", "<cmd> ene <BAR> startinsert <cr>"),
+          button("q", "cd..", "<cmd> qa <cr>"),
         },
       }
       config.layout[8] = {
         type = "group",
         val = {
-          button("c", "Config", LazyVim.pick.config_files()),
+          button("c", "Lazy Config", LazyVim.pick.config_files()),
           button("x", "Lazy Extras", "<cmd> LazyExtra <cr>"),
-          button("l", "Lazy", "<cmd> Lazy <cr>"),
-          { type = "padding", val = 1 },
-          button("q", "Quit", "<cmd> qa <cr>"),
+          button("l", "Lazy Store", "<cmd> Lazy <cr>"),
         },
       }
       require("alpha").setup(config)
