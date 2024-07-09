@@ -17,7 +17,6 @@ return {
         type = "group",
         val = {
           button("s", "Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
-          button("d", "Default Open", "<cmd> DefaultOpen <cr>"),
           button("n", "New file", "<cmd> ene <BAR> startinsert <cr>"),
         },
       }

@@ -1,10 +1,10 @@
 local wk = require("which-key")
 
 wk.register({
-  sf = {
-    name = "+write",
+  w = {
+    name = "+window",
   },
-})
+}, { prefix = ";", mode = { "n" } })
 
 wk.register({
   sr = {

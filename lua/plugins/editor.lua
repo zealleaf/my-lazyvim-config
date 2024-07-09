@@ -143,7 +143,7 @@ return {
       { "R", mode = { "o", "x" }, false },
       { "<c-s>", mode = { "c" }, false },
       {
-        ";s",
+        ";f",
         mode = { "n", "x", "o" },
         function()
           require("flash").jump()
