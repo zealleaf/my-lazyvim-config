@@ -12,7 +12,6 @@ return {
       vim.keymap.set("n", ";m", ":MaximizerToggle!<CR>", opts)
     end,
   },
-
   -- nvim-ufo
   {
     "kevinhwang91/nvim-ufo",
@@ -44,32 +43,6 @@ return {
     },
     event = "BufReadPost",
     config = function()
-      local wk = require("which-key")
-      wk.register({
-        [";z"] = { name = "+nvim-ufo" },
-        [";zc"] = {
-          function()
-            require("ufo").closeAllFolds()
-          end,
-          "Close all folds",
-        },
-        [";zk"] = {
-          function()
-            local winid = require("ufo").peekFoldedLinesUnderCursor()
-            if not winid then
-              vim.lsp.buf.hover()
-            end
-          end,
-          "Hover fold",
-        },
-        [";zo"] = {
-          function()
-            require("ufo").openAllFolds()
-          end,
-          "Open all folds",
-        },
-      })
-
       local handler = function(virtText, lnum, endLnum, width, truncate)
         local newVirtText = {}
         local suffix = (" 󱞥 %d "):format(endLnum - lnum)
@@ -110,7 +83,6 @@ return {
       })
     end,
   },
-
   -- git-conflict.nvim
   { "akinsho/git-conflict.nvim", version = "*", config = true },
 }

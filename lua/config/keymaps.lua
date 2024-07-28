@@ -10,16 +10,18 @@ local opts = {
 ---------------------
 -- General
 ---------------------
-vim.keymap.set("n", ";s", ":wa<CR>", opts)
+vim.keymap.set("n", ";", "", opts)
+vim.keymap.set("n", "J", "", opts)
 vim.keymap.set("n", "<C-q>", "", opts) -- tmux
+
+vim.keymap.set("n", ";s", ":wa<CR>", opts)
 vim.keymap.set("n", "q", "<C-w>c")
-vim.keymap.set("n", "J", "")
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
 vim.keymap.set("v", "H", "^")
 vim.keymap.set("v", "L", "$")
-vim.keymap.set("v", "[", ":move '<-2<CR>gv-gv", opts)
-vim.keymap.set("v", "/", ":move '>+1<CR>gv-gv", opts)
+vim.keymap.set("v", "K", ":move '<-2<CR>gv-gv", opts)
+vim.keymap.set("v", "J", ":move '>+1<CR>gv-gv", opts)
 
 -- clear search highlights
 vim.keymap.set("n", "<C-n>", ":nohlsearch<CR>", opts)

@@ -12,7 +12,6 @@ return {
       })
     end,
   },
-
   -- nvim-lspconfig
   {
     "neovim/nvim-lspconfig",

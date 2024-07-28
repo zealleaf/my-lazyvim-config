@@ -21,23 +21,6 @@ return {
       },
     },
     config = function()
-      local wk = require("which-key")
-      wk.register({
-        [";e"] = { name = "+neo-tree" },
-        [";eb"] = {
-          function()
-            require("neo-tree.command").execute({ source = "buffers", toggle = true })
-          end,
-          "Buffer explorer",
-        },
-        [";eg"] = {
-          function()
-            require("neo-tree.command").execute({ source = "git_status", toggle = true })
-          end,
-          "Git explorer",
-        },
-      })
-
       require("neo-tree").setup({
         commands = {
           copy_selector = function(state)
@@ -153,34 +136,60 @@ return {
     },
   },
   {
-    "nvim-pack/nvim-spectre",
+    "MagicDuck/grug-far.nvim",
     keys = {
-      { "<leader>sr", false },
+      { "<leader>sr", false, mode = { "n", "v" } },
       {
-        "<leader>srl",
+        "<leader>srd",
         mode = { "n" },
-        '<cmd>lua require("spectre").open_file_search()<CR>',
-        desc = "Search local",
+        ":lua require('grug-far').grug_far({ transient = true })<cr>",
+        desc = "transient default",
       },
-      { "<leader>srg", mode = { "n" }, '<cmd>lua require("spectre").toggle()<CR>', desc = "Search global" },
+      {
+        "<leader>sr.",
+        function()
+          local is_visual = vim.fn.mode():lower():find("v")
+          if is_visual then -- needed to make visual selection work
+            vim.cmd([[normal! v]])
+          end
+          local grug = require("grug-far");
+          (is_visual and grug.with_visual_selection or grug.grug_far)({
+            prefills = { filesFilter = "*." .. vim.fn.expand("%:e") },
+          })
+        end,
+        mode = { "n", "v" },
+        desc = "dot filetype",
+      },
+      {
+        "<leader>srf",
+        mode = { "n" },
+        ":lua require('grug-far').grug_far({ prefills = { flags = vim.fn.expand('%') } })<cr>",
+        desc = "current file",
+      },
       {
         "<leader>srw",
         mode = { "n" },
-        '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
-        desc = "Search word local",
+        ":lua require('grug-far').grug_far({ prefills = { search = vim.fn.expand('<cword>') } })<cr>",
+        desc = "word workspace",
       },
       {
-        "<leader>srW",
-        mode = { "n" },
-        '<esc><cmd>lua require("spectre").open_visual({select_word=true})<CR>',
-        desc = "Search word global",
-      },
-      {
-        "<leader>srW",
+        "<leader>srw",
         mode = { "v" },
-        '<esc><cmd>lua require("spectre").open_visual()<CR>',
-        desc = "Search word global",
+        ":<C-u>lua require('grug-far').with_visual_selection({ prefills = { flags = vim.fn.expand('%') } })<cr>",
+        desc = "word current file",
       },
+    },
+  },
+  -- which-key.nvim
+  {
+    "folke/which-key.nvim",
+    opts = {
+      win = {
+        border = "rounded", -- none, single, double, shadow, rounded
+      },
+      -- icons = {
+      --   rules = false,
+      -- },
     },
   },
 }

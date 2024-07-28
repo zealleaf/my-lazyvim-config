@@ -1,7 +1,11 @@
 return {
-  -- markdown
+  -- fzf-lua
   {
-    "lukas-reineke/headlines.nvim",
-    enabled = false,
+    "ibhagwan/fzf-lua",
+    opts = {
+      defaults = {
+        file_icons = "mini",
+      },
+    },
   },
 }

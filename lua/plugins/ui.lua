@@ -16,7 +16,7 @@ return {
       config.layout[4] = {
         type = "group",
         val = {
-          button("q", "cd..", "<cmd> qa <cr>"),
+          button("q", "cd ..", "<cmd> qa <cr>"),
         },
       }
       config.layout[8] = {
@@ -30,7 +30,6 @@ return {
       require("alpha").setup(config)
     end,
   },
-
   -- messages, cmdline and the popupmenu
   {
     "folke/noice.nvim",
@@ -52,7 +51,6 @@ return {
       })
     end,
   },
-
   -- nvim-notify
   {
     "rcarriga/nvim-notify",
@@ -63,7 +61,6 @@ return {
       render = "minimal",
     },
   },
-
   -- mini.indentscope
   {
     "echasnovski/mini.indentscope",
@@ -90,12 +87,11 @@ return {
         -- object_scope_with_border = "ai",
 
         -- Motions (jump to respective border line; if not present - body line)
-        goto_top = ";[",
-        goto_bottom = ";/",
+        goto_top = ";K",
+        goto_bottom = ";J",
       },
     },
   },
-
   -- mini.animate
   -- {
   --   "echasnovski/mini.animate",
@@ -108,7 +104,6 @@ return {
   --     },
   --   },
   -- },
-
   -- bufferline.nvim
   {
     "akinsho/bufferline.nvim",
@@ -117,7 +112,6 @@ return {
       { "<S-Tab>", ":BufferLineCyclePrev<CR>", desc = "Prev tab", silent = true },
     },
   },
-
   -- lualine.nvim
   {
     "nvim-lualine/lualine.nvim",
@@ -130,7 +124,6 @@ return {
       },
     },
   },
-
   -- incline.nvim
   {
     "b0o/incline.nvim",
@@ -153,7 +146,6 @@ return {
       })
     end,
   },
-
   -- zen-mode.nvim
   {
     "folke/zen-mode.nvim",
@@ -167,15 +159,5 @@ return {
       },
     },
     keys = { { "<leader>z", ":ZenMode<CR>", desc = "Zen Mode", silent = true } },
-  },
-
-  -- which-key.nvim
-  {
-    "folke/which-key.nvim",
-    opts = {
-      window = {
-        border = "rounded", -- none, single, double, shadow
-      },
-    },
   },
 }
