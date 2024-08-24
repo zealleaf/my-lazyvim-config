@@ -67,7 +67,7 @@ return {
     opts = {
       draw = {
         -- Delay (in ms) between event and start of drawing scope indicator
-        delay = 100,
+        delay = 50,
 
         -- Animation rule for scope's first drawing. A function which, given
         -- next and total step numbers, returns wait time (in ms). See
@@ -97,7 +97,7 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = {
       options = {
-        theme = "onedark",
+        theme = "auto",
       },
       sections = {
         lualine_c = {
