@@ -97,34 +97,55 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = {
       options = {
-        theme = "auto",
+        theme = "onedark",
       },
       sections = {
+        lualine_c = {
+          {
+            "project",
+            fmt = function()
+              local cwd = vim.fn.getcwd()
+              return vim.fn.fnamemodify(cwd, ":t")
+            end,
+          },
+          {
+            "filename",
+            fmt = function()
+              local cwd = vim.fn.getcwd()
+              local fullpath = vim.fn.expand("%:p")
+              local relative_path = fullpath:sub(#cwd + 2)
+              return relative_path
+            end,
+          },
+        },
+        lualine_z = {},
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {
+          {
+            "project",
+            fmt = function()
+              local cwd = vim.fn.getcwd()
+              return vim.fn.fnamemodify(cwd, ":t")
+            end,
+          },
+          {
+            "filename",
+            fmt = function()
+              local cwd = vim.fn.getcwd()
+              local fullpath = vim.fn.expand("%:p")
+              local relative_path = fullpath:sub(#cwd + 2)
+              return relative_path
+            end,
+          },
+        },
+        lualine_x = { "location" },
+        lualine_y = {},
         lualine_z = {},
       },
     },
-  },
-  -- incline.nvim
-  {
-    "b0o/incline.nvim",
-    event = "BufReadPre",
-    priority = 1200,
-    config = function()
-      local colors = require("solarized-osaka.colors").setup()
-      require("incline").setup({
-        highlight = {
-          groups = {
-            InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
-            InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
-          },
-        },
-        window = { margin = { vertical = 0, horizontal = 0 }, zindex = 25 },
-        hide = {
-          cursorline = true,
-        },
-        render = "basic",
-      })
-    end,
   },
   -- zen-mode.nvim
   {
