@@ -84,9 +84,9 @@ return {
             ["<space>"] = "",
             h = "navigate_up",
             -- b = "navigate_up",
-            [";v"] = "open_with_vscode",
-            [";o"] = "open_with_system",
-            [";y"] = "copy_selector",
+            ["<leader>zv"] = "open_with_vscode",
+            ["<leader>zs"] = "open_with_system",
+            ["<leader>zy"] = "copy_selector",
             L = "focus_preview",
           },
         },
@@ -126,7 +126,7 @@ return {
       { "R", mode = { "o", "x" }, false },
       { "<c-s>", mode = { "c" }, false },
       {
-        ";f",
+        "<leader>zf",
         mode = { "n", "x", "o" },
         function()
           require("flash").jump()
@@ -175,7 +175,7 @@ return {
       {
         "<leader>srw",
         mode = { "v" },
-        ":<C-u>lua require('grug-far').with_visual_selection({ prefills = { flags = vim.fn.expand('%') } })<cr>",
+        ":<c-u>lua require('grug-far').with_visual_selection({ prefills = { flags = vim.fn.expand('%') } })<cr>",
         desc = "word current file",
       },
     },

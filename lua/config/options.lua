@@ -6,7 +6,7 @@ vim.g.mapleader = " "
 vim.g.autoformat = false
 
 vim.o.timeoutlen = 200
-vim.o.clipboard = 'unnamedplus'
+vim.o.clipboard = "unnamedplus"
 
 vim.scriptencoding = "utf-8"
 

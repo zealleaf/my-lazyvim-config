@@ -20,16 +20,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- neo-tree
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "nvcheatsheet", "neo-tree" },
-  callback = function()
-    require("ufo").detach()
-    vim.opt_local.foldenable = false
-    vim.opt_local.foldcolumn = "0"
-  end,
-})
-
 -- use copilot only in certain directories
 local enable_dirs = {
   vim.fn.expand("$HOME") .. "/dev/",

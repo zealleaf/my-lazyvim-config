@@ -87,29 +87,9 @@ return {
         -- object_scope_with_border = "ai",
 
         -- Motions (jump to respective border line; if not present - body line)
-        goto_top = ";K",
-        goto_bottom = ";J",
+        goto_top = "<leader>zk",
+        goto_bottom = "<leader>zj",
       },
-    },
-  },
-  -- mini.animate
-  -- {
-  --   "echasnovski/mini.animate",
-  --   opts = {
-  --     cursor = {
-  --       enable = false,
-  --     },
-  --     scroll = {
-  --       enable = false,
-  --     },
-  --   },
-  -- },
-  -- bufferline.nvim
-  {
-    "akinsho/bufferline.nvim",
-    keys = {
-      { "<Tab>", ":BufferLineCycleNext<CR>", desc = "Next tab", silent = true },
-      { "<S-Tab>", ":BufferLineCyclePrev<CR>", desc = "Prev tab", silent = true },
     },
   },
   -- lualine.nvim
@@ -158,6 +138,6 @@ return {
         kitty = { enabled = false, font = "+2" },
       },
     },
-    keys = { { "<leader>z", ":ZenMode<CR>", desc = "Zen Mode", silent = true } },
+    keys = { { "<leader>zz", ":ZenMode<CR>", desc = "Zen Mode", silent = true } },
   },
 }
