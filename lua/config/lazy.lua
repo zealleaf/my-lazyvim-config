@@ -13,7 +13,7 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = "default",
+        colorscheme = "github_dark_high_contrast",
         news = {
           lazyvim = true,
           neovim = true,
