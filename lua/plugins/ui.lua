@@ -100,24 +100,6 @@ return {
         theme = "auto",
       },
       sections = {
-        lualine_c = {
-          {
-            "project",
-            fmt = function()
-              local cwd = vim.fn.getcwd()
-              return vim.fn.fnamemodify(cwd, ":t")
-            end,
-          },
-          {
-            "filename",
-            fmt = function()
-              local cwd = vim.fn.getcwd()
-              local fullpath = vim.fn.expand("%:p")
-              local relative_path = fullpath:sub(#cwd + 2)
-              return relative_path
-            end,
-          },
-        },
         lualine_z = {},
       },
       inactive_sections = {
