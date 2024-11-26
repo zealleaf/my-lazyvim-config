@@ -1,9 +1,10 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.coding.copilot",
+    "lazyvim.plugins.extras.ai.copilot",
     "lazyvim.plugins.extras.coding.luasnip",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.editor.fzf",
+    "lazyvim.plugins.extras.editor.mini-files",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.tailwind",
@@ -15,8 +16,8 @@
     "lazyvim.plugins.extras.util.project"
   ],
   "news": {
-    "NEWS.md": "6520",
+    "NEWS.md": "7429",
     "doc/news.txt": "24450"
   },
-  "version": 6
+  "version": 7
 }

@@ -1,5 +1,4 @@
 return {
-  -- fzf-lua
   {
     "ibhagwan/fzf-lua",
     opts = function(_, opts)

@@ -1,6 +1,4 @@
----@diagnostic disable: assign-type-mismatch
 return {
-  -- mason.nvim
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
@@ -11,14 +9,5 @@ return {
         "prettierd",
       })
     end,
-  },
-  -- nvim-lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      inlay_hints = {
-        enabled = false,
-      },
-    },
   },
 }

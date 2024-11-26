@@ -1,5 +1,4 @@
 return {
-  -- conform.nvim
   {
     "stevearc/conform.nvim",
     opts = {
