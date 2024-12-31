@@ -12,7 +12,7 @@ return {
       },
       sources = {
         -- Enable minuet for autocomplete
-        default = { "lsp", "path", "buffer", "snippets", "minuet" },
+        -- default = { "lsp", "path", "buffer", "snippets", "minuet" },
         -- For manual completion only, remove 'minuet' from default
         providers = {
           minuet = {

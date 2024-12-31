@@ -8,7 +8,6 @@ local opts = {
 }
 
 -- General
-vim.keymap.set("n", "<leader>zs", ":wa<CR>", opts)
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
 vim.keymap.set("v", "H", "^")
