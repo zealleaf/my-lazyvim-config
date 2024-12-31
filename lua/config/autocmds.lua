@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 -- Disable auto comment
-vim.api.nvim_command('autocmd FileType * set formatoptions-=ro')
+-- vim.api.nvim_command('autocmd FileType * set formatoptions-=ro')
 
 -- Disable the concealing in some file formats
 -- The default conceallevel is 3 in LazyVim
@@ -21,36 +21,36 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- use copilot only in certain directories
-local enable_dirs = {
-  vim.fn.expand("$HOME") .. "/dev/",
-}
-
-vim.api.nvim_create_autocmd({ "LspAttach" }, {
-  pattern = "*",
-  callback = function(args)
-    if not args.data or not args.data.client_id then
-      return
-    end
-
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-    if client and client.name == "copilot" then
-      local current_dir = vim.fn.getcwd()
-
-      local in_enabled_dir = false
-      for _, pattern in ipairs(enable_dirs) do
-        if current_dir:find(pattern, 1, true) ~= nil then
-          in_enabled_dir = true
-          break
-        end
-      end
-
-      if not in_enabled_dir then
-        require("notify")("Copilot detach in: " .. current_dir)
-        vim.defer_fn(function()
-          vim.cmd("silent Copilot detach")
-        end, 0)
-      end
-    end
-  end,
-})
+-- local enable_dirs = {
+--   vim.fn.expand("$HOME") .. "/dev/",
+-- }
+--
+-- vim.api.nvim_create_autocmd({ "LspAttach" }, {
+--   pattern = "*",
+--   callback = function(args)
+--     if not args.data or not args.data.client_id then
+--       return
+--     end
+--
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--
+--     if client and client.name == "copilot" then
+--       local current_dir = vim.fn.getcwd()
+--
+--       local in_enabled_dir = false
+--       for _, pattern in ipairs(enable_dirs) do
+--         if current_dir:find(pattern, 1, true) ~= nil then
+--           in_enabled_dir = true
+--           break
+--         end
+--       end
+--
+--       if not in_enabled_dir then
+--         require("notify")("Copilot detach in: " .. current_dir)
+--         vim.defer_fn(function()
+--           vim.cmd("silent Copilot detach")
+--         end, 0)
+--       end
+--     end
+--   end,
+-- })

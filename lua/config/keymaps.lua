@@ -7,12 +7,7 @@ local opts = {
   silent = true,
 }
 
----------------------
 -- General
----------------------
-vim.keymap.set("n", "J", "", opts)
-vim.keymap.set("n", "<c-q>", "", opts) -- tmux
-
 vim.keymap.set("n", "<leader>zs", ":wa<CR>", opts)
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
@@ -21,8 +16,8 @@ vim.keymap.set("v", "L", "$")
 vim.keymap.set("v", "K", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set("v", "J", ":move '>+1<CR>gv-gv", opts)
 
--- clear search highlights
+-- Clear search highlights
 vim.keymap.set("n", "<c-n>", ":nohlsearch<CR>", opts)
 
--- delete single character without copying into register
+-- Delete single character without copying into register
 vim.keymap.set("n", "x", '"_x')

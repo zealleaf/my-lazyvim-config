@@ -4,6 +4,7 @@ return {
     opts = {
       formatters_by_ft = {
         yaml = { "prettierd" },
+        toml = { "taplo" },
         svg = { "lemminx" },
         bash = { "shfmt" },
         lua = { "stylua" },
