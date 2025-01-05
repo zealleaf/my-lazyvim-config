@@ -19,10 +19,6 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 10
 vim.opt.iskeyword:append("-")
 
--- Undercurl
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
 -- LSP
 vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
 vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
