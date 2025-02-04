@@ -4,7 +4,7 @@ return {
     opts = {
       keymap = {
         -- Manually invoke minuet completion.
-        ["<A-y>"] = {
+        ["<C-l>"] = {
           function(cmp)
             cmp.show({ providers = { "minuet" } })
           end,

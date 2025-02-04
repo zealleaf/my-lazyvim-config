@@ -6,6 +6,7 @@
 vim.g.mapleader = " "
 vim.g.autoformat = false
 vim.g.snacks_animate = false
+vim.g.lazyvim_picker = "snacks"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.title = true
 vim.opt.timeoutlen = 200
