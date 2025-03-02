@@ -11,7 +11,7 @@ return {
         silent = true,
       },
       {
-        "<leader>srf",
+        "<leader>srt",
         function()
           local is_visual = vim.fn.mode():lower():find("v")
           if is_visual then -- needed to make visual selection work
@@ -23,7 +23,7 @@ return {
           })
         end,
         mode = { "n", "v" },
-        desc = "filetype",
+        desc = "type",
         silent = true,
       },
       {
@@ -37,14 +37,14 @@ return {
         "<leader>srw",
         mode = { "n" },
         ":lua require('grug-far').open({ prefills = { search = vim.fn.expand('<cword>') } })<cr>",
-        desc = "gword",
+        desc = "word",
         silent = true,
       },
       {
         "<leader>srw",
         mode = { "v" },
         ":lua require('grug-far').with_visual_selection({ prefills = { paths = vim.fn.expand('%') } })<cr>",
-        desc = "lword",
+        desc = "word",
         silent = true,
       },
     },

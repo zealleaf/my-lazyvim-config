@@ -9,4 +9,5 @@ data
 
 .DS_Store
 
-lua/zealleaf/env.*
+pack
+lua/zealleaf/local.*

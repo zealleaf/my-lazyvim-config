@@ -6,16 +6,16 @@ return {
       local config = require("alpha.themes.startify").config
       local button = require("alpha.themes.startify").button
       config.layout[2].val = {
-        [[               _ _             __      ]],
-        [[ _______  __ _| | | ___  __ _ / _|     ]],
-        [[|_  / _ \/ _` | | |/ _ \/ _` | |_       ]],
-        [[ / /  __/ (_| | | |  __/ (_| |  _|     ]],
-        [[/___\___|\__,_|_|_|\___|\__,_|_|        ]],
+        [[               _ _             __ ]],
+        [[ _______  __ _| | | ___  __ _ / _|]],
+        [[|_  / _ \/ _` | | |/ _ \/ _` | |_ ]],
+        [[ / /  __/ (_| | | |  __/ (_| |  _|]],
+        [[/___\___|\__,_|_|_|\___|\__,_|_|  ]],
       }
       config.layout[4] = {
         type = "group",
         val = {
-          button("q", "cd ..", "<cmd> qa <cr>"),
+          button("q", "Quit", "<cmd> qa <cr>"),
         },
       }
       config.layout[8] = {

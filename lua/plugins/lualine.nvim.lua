@@ -2,36 +2,16 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = {
-      options = {
-        theme = "auto",
-      },
       sections = {
-        lualine_z = {},
-      },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {
-          {
-            "project",
-            fmt = function()
-              local cwd = vim.fn.getcwd()
-              return vim.fn.fnamemodify(cwd, ":t")
-            end,
-          },
-          {
-            "filename",
-            fmt = function()
-              local cwd = vim.fn.getcwd()
-              local fullpath = vim.fn.expand("%:p")
-              local relative_path = fullpath:sub(#cwd + 2)
-              return relative_path
-            end,
-          },
+        lualine_z = {
+          function()
+            local timezone_offset = 0
+            if os.getenv("SSH_TTY") then
+              timezone_offset = 8 * 3600
+            end
+            return " " .. os.date("%R", os.time() + timezone_offset)
+          end,
         },
-        lualine_x = { "location" },
-        lualine_y = {},
-        lualine_z = {},
       },
     },
   },
